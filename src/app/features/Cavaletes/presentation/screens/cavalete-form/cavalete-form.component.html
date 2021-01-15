@@ -1,0 +1,29 @@
+<div style="text-align:center">
+    <h1>
+        Cadastro de Cavaletes
+    </h1>
+    <mat-dialog-content [formGroup]="cavaleteForm" #formCavalete>
+
+        <mat-form-field fxFlex>
+            <mat-label>Novo Tipo de Cavalete</mat-label>
+            <input matInput type="text" formControlName="tipocavalete">
+
+            <mat-error *ngFor="let validation of cavalete_validation_messages.tipocavalete">
+                <mat-error
+                    *ngIf="cavaleteForm.controls['tipocavalete'].hasError(validation.type) && (cavaleteForm.controls['tipocavalete'].dirty || cavaleteForm.controls['tipocavalete'].touched)">
+                    {{validation.message}}
+                </mat-error>
+            </mat-error>
+
+        </mat-form-field>
+
+        <input type="hidden" formControlName="id">
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button [mat-dialog-close]="true" (click)="close()">Cancelar</button>
+        <button mat-raised-button [mat-dialog-close]="true" (click)="save()"
+            [disabled]="!cavaleteForm.valid">Salvar</button>
+    </mat-dialog-actions>
+
+</div>
